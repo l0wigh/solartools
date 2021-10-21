@@ -1,3 +1,5 @@
+local notification = require("notify")
+
 local function update()
 	os.execute("rm ~/.config/lvim/_before_update_config.lua")
 	os.execute("rm ~/.config/lvim/lua/_before_update_solarboard.lua")
@@ -8,9 +10,10 @@ local function update()
 	vim.cmd("e ~/.config/lvim/config.lua")
 	vim.cmd("w")
 	vim.cmd("BufferClose")
-	print("SolarVim is now updated, you might need to restart svim to see some changes")
+	notification("Update finished, you might need to restart to see changes", "Information", {title = "SolarVim"})
 end
 
+
 return {
-	update = update
+	update = update,
 }
